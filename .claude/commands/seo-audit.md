@@ -1,129 +1,134 @@
 # SEO Audit — 7 Parallel Agents
 
-Run a full SEO + GEO audit on a URL using 7 specialized agents in parallel.
+Run a full SEO + GEO audit using the AgriciDaniel/claude-seo skill.
 
 **Usage:** `/seo audit https://example.com`
-
-Source skill: `AgriciDaniel/claude-seo` on GitHub
-
----
-
-When this command is invoked with a URL, launch all 7 agents simultaneously using the Agent tool.
-All 7 must run in parallel in a single message — do NOT run them sequentially.
-
-## Agent Definitions
-
-### Agent 1 — Technical SEO
-Analyze `$URL` for technical SEO issues:
-- Page load speed signals (render-blocking resources, image sizes, minification)
-- Mobile-friendliness indicators
-- HTTPS and security headers
-- Crawlability (robots meta, canonical tags, noindex risks, sitemap presence)
-- Core Web Vitals indicators visible in the HTML
-- Broken or redirect-chained internal links visible in source
-Output: numbered list of issues with severity (Critical / High / Medium / Low) and exact fix.
-Target score: 80+
-
-### Agent 2 — On-Page Analysis
-Analyze `$URL` for on-page SEO:
-- Title tag: length, keyword placement, click appeal
-- Meta description: length, keyword, CTA presence
-- H1/H2/H3 structure and keyword usage
-- Keyword density and natural usage in body copy
-- Internal linking anchor text quality
-- URL slug structure
-Output: numbered list of issues with severity and exact recommended fix or rewrite.
-Target score: 75+
-
-### Agent 3 — Content Quality (E-E-A-T)
-Analyze `$URL` for E-E-A-T signals:
-- Author credentials and bio presence
-- First-hand experience signals in copy
-- External citations and source links
-- Trust signals (awards, press mentions, case studies)
-- Content depth vs. top-ranking competitors
-- Outdated information risks
-Output: E-E-A-T score (1–10) per dimension with specific improvement actions.
-Target score: 70+
-
-### Agent 4 — Schema Markup
-Analyze `$URL` for structured data:
-- Existing schema types detected (JSON-LD, Microdata)
-- Missing schema opportunities (Article, FAQ, LocalBusiness, Product, HowTo, BreadcrumbList)
-- Schema errors or incomplete implementations
-Output: list of missing schema types + ready-to-use JSON-LD code blocks for top 3 opportunities.
-
-### Agent 5 — Image Optimization
-Analyze `$URL` for image SEO:
-- Missing or weak alt text on all images
-- Images without width/height attributes (CLS risk)
-- Non-WebP formats in use
-- Large images that need compression
-- Decorative images missing aria-hidden
-Output: image-by-image audit table with current state and recommended fix.
-
-### Agent 6 — AI Search / GEO (Generative Engine Optimization)
-Analyze `$URL` for visibility in AI search engines (ChatGPT, Claude, Perplexity, Google AI Overviews):
-- Is content structured for direct answer extraction?
-- Clear definition statements, lists, and tables AI can cite?
-- Question-format H2/H3 headings?
-- Entity clearly defined with consistent brand signals?
-- Direct answer to primary query in first 100 words?
-- Citation-worthiness: unique data, stats, or original research?
-- AI crawler access (llms.txt present?)
-- Brand mentions on platforms AI systems cite (YouTube, Reddit)
-Output: GEO score (1–10) with specific rewrites and structural changes to improve AI citation rate.
-
-### Agent 7 — Strategic Planning
-Create a prioritized 30-day SEO action plan for `$URL`:
-- **Week 1:** Foundation — fix critical crawl errors, broken links, sitemaps
-- **Week 2:** On-page quick wins — title tags, H1 hierarchy, schema markup
-- **Week 3:** Content upgrades — top 3 keyword gaps, lowest E-E-A-T pages
-- **Week 4:** AI search visibility — build brand presence on YouTube/Reddit, generate llms.txt
-For each action: effort (Low/Med/High), impact (Low/Med/High), owner (Dev/Content/SEO).
+**Runtime:** 8–12 minutes (not 3 — the marketing deck overstates this)
+**Source:** `AgriciDaniel/claude-seo` (MIT, open-source, free core)
 
 ---
 
-## Output Format
+## Install
 
-After all 7 agents complete, compile into a single audit report:
-
+**Option A — Plugin marketplace (Claude Code 1.0.33+, recommended):**
 ```
-# SEO Audit Report — [URL]
-Date: [DATE]
-
-## Executive Summary
-[3-sentence summary of biggest opportunities]
-
-## Health Scores
-- Technical SEO: [X]/100 (target: 80+)
-- On-Page: [X]/100 (target: 75+)
-- Content/E-E-A-T: [X]/100 (target: 70+)
-- GEO/AI Search: [X]/10
-
-## Critical Issues (fix this week)
-[Highest severity items from all agents]
-
-## Agent Reports
-### 1. Technical SEO
-### 2. On-Page Analysis
-### 3. Content Quality (E-E-A-T)
-### 4. Schema Markup
-### 5. Image Optimization
-### 6. AI Search / GEO
-### 7. Strategic 30-Day Plan
-
-## Quick Win Code Snippets
-[Schema JSON-LD, meta tag rewrites, alt text fixes — copy-paste ready]
+/plugin marketplace add AgriciDaniel/claude-seo
+/plugin install claude-seo@agricidaniel-claude-seo
 ```
 
-Save the completed report to `SEO-Project/Reports/audits/[domain]-audit-[YYYY-MM-DD].md`.
+**Option B — Manual clone (macOS/Linux):**
+```
+git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git
+bash claude-seo/install.sh
+```
+
+**Option B — Manual clone (Windows):**
+```
+git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git
+powershell -ExecutionPolicy Bypass -File claude-seo\install.ps1
+```
+
+Verify: open Claude Code and type `/seo` — should list 16 commands.
+
+**First run:**
+```
+/seo audit https://your-site.com
+```
+
+---
+
+## Scoring Breakdown (7 Weighted Categories)
+
+| Category | Weight | Target |
+|---|---|---|
+| Content Quality (E-E-A-T) | 23% | 70+ |
+| Technical SEO | 22% | 80+ |
+| On-Page SEO | 20% | 75+ |
+| Schema Markup | 10% | — |
+| Performance / Core Web Vitals (incl. INP) | 10% | — |
+| AI Search Readiness (GEO) | 10% | — |
+| Images | 5% | — |
+
+Auto-detects business type from homepage: SaaS, local service, e-commerce, publisher, agency.
+
+---
+
+## Full Command Reference
+
+All commands: `/seo <command> <url>`
+
+| Command | What it does |
+|---|---|
+| `audit` | Full-site audit, parallel analysis across all sub-agents |
+| `page` | Deep single-page analysis |
+| `technical` | Technical SEO audit across 9 categories |
+| `content` | E-E-A-T and content quality analysis |
+| `schema` | Schema markup detection, validation, generation |
+| `geo` | AI Overviews / Generative Engine Optimization |
+| `images` | Image optimization analysis |
+| `sitemap` | Analyze existing XML sitemap |
+| `sitemap-gen` | Generate new sitemap with industry templates |
+| `plan` | Strategic SEO planning |
+| `compete` | Competitor comparison page generation |
+| `hreflang` | International SEO / hreflang audit and generation |
+| `programmatic` | Analysis/planning for pages generated at scale |
+| `local` | Local SEO — Google Business Profile, citations, reviews, map pack |
+| `maps` | Maps intelligence (requires DataForSEO extension) |
+
+**Most relevant for SDM local service clients:** `/seo local` and `/seo maps`
+The skill auto-suggests `/seo local` when it detects local-business signals.
+
+---
+
+## Optional Extensions
+
+**DataForSEO** (priority install for live data):
+```
+./extensions/dataforseo/install.sh
+```
+Key commands:
+```
+/seo dataforseo serp <keyword>          # Google organic results
+/seo dataforseo serp-youtube <keyword>  # YouTube search results
+/seo dataforseo content <keyword/url>   # Content analysis and trends
+/seo dataforseo listings <keyword>      # Business listings search
+/seo dataforseo ai-scrape <query>       # ChatGPT web scraper for GEO
+/seo dataforseo ai-mentions <keyword>   # LLM mention tracking
+```
+
+**Firecrawl** — full-site crawl, used by `audit` for URL discovery:
+```
+./extensions/firecrawl/install.sh
+```
+
+**Banana** — AI image generation (OG images, hero graphics, schema images):
+```
+./extensions/banana/install.sh
+```
+
+---
+
+## What GEO Actually Scores
+
+The skill follows Google's position: AI Overviews run on the same ranking
+systems as classic search. GEO is not a separate discipline — it's good SEO.
+
+What it actually measures:
+- **Passage citability** — 134–167 word self-contained answer blocks
+- **Question-based heading hierarchy** — H2/H3 as questions
+- **Attribution density** — external citations and sources
+- **Entity presence** — Wikipedia, Reddit, YouTube, LinkedIn
+
+What it does NOT treat as GEO levers (pushes back on these claims):
+- `llms.txt` as a citation driver
+- "Content chunking" as an AI-specific tactic
+- Separate keyword strategy for AI search
 
 ---
 
 ## Automate the Fixes
 
-After reviewing the audit, run this follow-up prompt:
+After the audit, feed results back into Claude:
 
 ```
 Based on the SEO audit results in SEO-Project/Reports/audits/[filename].md,
@@ -136,13 +141,9 @@ Outputs should include:
 
 ---
 
-## MCP Integrations for Live Data
+## Notes for SDM
 
-Connect these MCP servers for real data instead of HTML analysis:
-
-| Tool | MCP | What It Adds |
-|---|---|---|
-| DataForSEO | `dataforseo` | Live SERPs & keyword volumes |
-| Semrush | `semrush` | Competitor intel & position tracking |
-| Google Search Console | `gsc` | Real click & impression data |
-| PageSpeed Insights | `pagespeed` | Core Web Vitals scoring |
+- Run on 2–3 real client sites before pitching — calibrate what you promise based on actual output
+- `/seo local` + `/seo maps` are the two sub-skills most directly applicable to local service clients
+- DataForSEO extension is the priority add-on for live SERP/keyword data
+- The 30-day plan in `SEO-Project/Prompts/` still applies as the rollout framework

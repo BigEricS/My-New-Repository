@@ -1,10 +1,13 @@
 # llms.txt Generator
 
-`llms.txt` is a file placed at the root of your website that tells AI crawlers
-(ChatGPT, Claude, Perplexity) what your site is about and which pages are
-most important to index for AI-generated answers.
+> **Note:** `llms.txt` is useful for AI developer tools and coding assistants
+> (like Claude Code reading docs), but the AgriciDaniel/claude-seo skill and
+> Google both confirm it is NOT a citation lever for consumer AI search
+> (ChatGPT, Perplexity, Google AI Overviews). Don't pitch it as a GEO tactic.
+> Real GEO signals: passage citability, question-based headings, entity presence.
 
-Think of it as `robots.txt` — but for AI search engines.
+`llms.txt` is a file at the root of your website that helps AI coding assistants
+understand your site's structure and documentation.
 
 ---
 

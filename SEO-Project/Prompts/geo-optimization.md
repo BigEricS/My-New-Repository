@@ -4,6 +4,21 @@
 Optimizing content to be cited and surfaced by AI search engines:
 ChatGPT, Claude, Perplexity, Google AI Overviews, Bing Copilot.
 
+**Key reality check (per AgriciDaniel/claude-seo + Google):**
+AI Overviews run on the same ranking systems as classic search.
+GEO is not a separate discipline — it's good SEO done well.
+
+What actually moves GEO scores:
+- **Passage citability** — 134–167 word self-contained answer blocks
+- **Question-based headings** — H2/H3 phrased as questions
+- **Attribution density** — external citations and credible sources
+- **Entity presence** — Wikipedia, Reddit, YouTube, LinkedIn mentions
+
+What does NOT move GEO scores (common myths):
+- `llms.txt` files
+- "Content chunking" as an AI-specific technique
+- Separate keyword lists for AI search
+
 ---
 
 ## 1. AI Citation Audit
